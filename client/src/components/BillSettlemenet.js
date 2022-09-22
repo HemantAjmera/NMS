@@ -32,7 +32,7 @@ const BillSettlement = ({ visible, setVisible, bill, redirectLocation }) => {
         setDiscount(bill.discount)
         setPayInCash(bill.payInCash)
         setPayInOnline(bill.payInOnline)
-
+        // eslint-disable-next-line
     }, [bill])
 
     if (bill === null) {

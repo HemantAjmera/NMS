@@ -16,6 +16,7 @@ const SingleBillItem = ({ visibleSingleBillItem, setVisibleSingleBillItem, selec
         setTreeSize("")
         setQuantity(0)
         setPrice(0)
+        // eslint-disable-next-line
     },[visibleSingleBillItem])
     const onHide = () => {
         setVisibleSingleBillItem(false);

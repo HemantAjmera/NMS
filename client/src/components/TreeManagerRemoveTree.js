@@ -1,5 +1,5 @@
 import { ListBox } from 'primereact/listbox';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useAppContext } from '../context/appContext';
 const TreeManagerRemoveTree = ({setVisible, setActionName, setTreeName, restFields, setRestFields}) => {
     const { treeNames } = useAppContext();
@@ -8,6 +8,7 @@ const TreeManagerRemoveTree = ({setVisible, setActionName, setTreeName, restFiel
             setTreeName([])
             setRestFields(false)
         }
+        // eslint-disable-next-line
     }, [restFields])
     const onItemClick = (e,data) =>{
         setTreeName([data.label, data.value])

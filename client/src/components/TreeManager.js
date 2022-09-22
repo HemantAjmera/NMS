@@ -19,6 +19,7 @@ const TreeManager = () => {
         if (treeNames.length === 0) {
             fetchTreeNames();
         }
+        // eslint-disable-next-line
     }, [])
     useEffect(() => {
         if (actionName === "ADDTREE") {
@@ -38,7 +39,7 @@ const TreeManager = () => {
             setMsg(treeSize)
         }
 
-
+        // eslint-disable-next-line
     }, [treeName, treeSize])
     const onAccept = () => {
         if (actionName === "ADDTREE") {

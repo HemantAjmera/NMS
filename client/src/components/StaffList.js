@@ -11,6 +11,7 @@ const StaffList = () => {
     const [visible, setVisible] = useState(false)
     useEffect(() => {
         fetchStaffList();
+        // eslint-disable-next-line
     }, [staffList])
     const onCellEditComplete = (e) => {
         let { rowData, newValue, field } = e;

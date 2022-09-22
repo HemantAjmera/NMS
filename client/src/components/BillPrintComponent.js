@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import "../assets/css/billprint.css";
 import { useAppContext } from "../context/appContext";
 import { useNavigate, useLocation } from "react-router-dom";

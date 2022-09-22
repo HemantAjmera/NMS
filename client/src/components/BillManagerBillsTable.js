@@ -25,7 +25,7 @@ const BillManagerBillsTable = ({ selectedDate, billNo, name, isSearchBtnClicked,
             setRecords(data.filteredBills)
         }
         fetchData(selectedDate);
-
+        // eslint-disable-next-line
     }, [selectedDate,visible])
     useEffect(() => {
         if (isSearchBtnClicked) {
@@ -45,6 +45,7 @@ const BillManagerBillsTable = ({ selectedDate, billNo, name, isSearchBtnClicked,
             fetchData();
         }
         setIsSearchBtnClicked(false)
+        // eslint-disable-next-line
     }, [isSearchBtnClicked,visible])
     const amountTemplate = (row, type) => {
         return new Intl.NumberFormat("en-US", {

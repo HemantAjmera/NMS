@@ -9,6 +9,7 @@ const TreeManagerAddTreeSize = ({setVisible, setTreeSize ,setActionName, restFie
             setSize("")
             setRestFields(false)
         }
+        // eslint-disable-next-line
     }, [restFields])
     const onSaveBtnClick = () => {
         if (size !== "") {

@@ -10,6 +10,7 @@ const TreeManagerAddTree = ({setVisible, setTreeName,setActionName, restFields, 
             setEnglishName("")
             setRestFields(false)
         }
+        // eslint-disable-next-line
     }, [restFields])
     const onSaveBtnClick = () => {
         if (hindiName !== "" && englishName !== "") {

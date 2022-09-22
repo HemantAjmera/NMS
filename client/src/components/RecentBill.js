@@ -9,6 +9,7 @@ const RecentBill = () => {
     const [visible, setVisible] = useState(false)
     useEffect(()=> {
         fetchRecentBills()
+        // eslint-disable-next-line
     },[])
     if (isFetching) {
         return <h2>लोड हो रहा है</h2>;

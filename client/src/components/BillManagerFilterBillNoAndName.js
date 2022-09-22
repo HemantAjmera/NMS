@@ -1,7 +1,6 @@
 import { InputNumber } from 'primereact/inputnumber'
 import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
-import { useState } from 'react';
 const BillManagerFilterBillNoAndName = ({ setBillNo, setName, setIsSearchBtnClicked }) => {
 
     return <><div className="grid flex">

@@ -24,6 +24,7 @@ const DashboardHomeBillChart = () => {
             setYears(yearList)
         }
         fetchData();
+        // eslint-disable-next-line
     }, [])
     useEffect(() => {
         if (selectedYear !== null) {
@@ -38,6 +39,7 @@ const DashboardHomeBillChart = () => {
             }
             fetchData();
         }
+        // eslint-disable-next-line
     }, [selectedYear])
     useEffect(()=> {
         if(selectedYear !== null && selectedMonth !== null){
@@ -49,6 +51,7 @@ const DashboardHomeBillChart = () => {
             }
             fetchData();
         }
+        // eslint-disable-next-line
     }, [selectedMonth])
     const onYearChange = (e) => {
         setSelectedYear(e.value.code)

@@ -15,6 +15,7 @@ const BillManagerFilterDatePicker = ({setSelectedDate}) => {
             setDates([startDate,endDate])
         }
         fetchData();
+        // eslint-disable-next-line
     },[])
     const onDateChangeHandler = (e) => {
         if(e === null) return;
