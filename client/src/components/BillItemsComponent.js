@@ -10,7 +10,6 @@ import { InputSwitch } from 'primereact/inputswitch';
 import SingleBillItem from "./SingleBillItem";
 
 const BillItemsComponent = () => {
-    console.log("billComponent Items")
     const {
         treeNames,
         treeSizes,
@@ -132,7 +131,6 @@ const BillItemsComponent = () => {
             <InputNumber
                 value={options.value}
                 onValueChange={(e) => {
-                    console.log(e)
                     if (isNaN(e.value) || e === undefined || e.value === undefined) {
                         return;
                     }

@@ -6,7 +6,6 @@ const Nursery = () => {
     const { fetchTreeNames, treeNames, lastBill } = useAppContext();
     const [visible, setVisible] = useState(true);
     useEffect(() => {
-        console.log()
         if (treeNames.length <= 0) {
             fetchTreeNames();
         }

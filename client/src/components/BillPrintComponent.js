@@ -26,9 +26,9 @@ const BillPrintComponent = () => {
     };
     let _billTableData = [...billTableData]
     useEffect(() => {
-        console.log(_billTableData)
+      
         if ((billTableData.length <= 0 || billAmounts.totalAmt <= 0 ) && state === null) {
-            console.log("Bill Window is called");
+         
             navigate("/", { replace: true });
             return;
         }
@@ -36,7 +36,7 @@ const BillPrintComponent = () => {
     });
     useEffect(() => {
         if ((billTableData.length <= 0 || billAmounts.totalAmt <= 0) && state === null) {
-            console.log("Bill Window is called 1");
+         
             navigate("/", { replace: true });
             return;
         }
@@ -99,7 +99,7 @@ const BillPrintComponent = () => {
                 canvas.height = 594;
                 canvas.style.border = "1px solid red";
                 section.appendChild(canvas);
-                //console.log(i);
+               
                 document.getElementsByClassName("A5")[0].appendChild(section);
             }
             isOverflowItem = true;
@@ -114,16 +114,16 @@ const BillPrintComponent = () => {
             quantityTotal += parseInt(_billTableData[index].quantity);
             priceTotal +=  parseInt(_billTableData[index].price);
             if (!isOverflowItem && index < 23) {
-                console.log("First Block");
+                
                 current_y += 16;
                 billItem({ current_y, ctx, index });
             } else {
-                console.log("Sec Block");
+               
                 if (index < 20) {
                     current_y += 20;
                     billItem({ current_y, ctx, index });
                 } else {
-                    console.log(index);
+                  
                     if (index >= counter) {
                         counter += 30;
                         let can = document.getElementById(
@@ -157,7 +157,7 @@ const BillPrintComponent = () => {
                     if (isLastPage) {
                         current_new_page_y += 16;
                     } else {
-                        console.log("last page" + index);
+                        
                         current_new_page_y += 18;
                     }
                     billItem({
@@ -169,10 +169,9 @@ const BillPrintComponent = () => {
             }
         }
         if (!isOverflowItem) {
-            console.log("Not Over Flow");
             billFooter({ current_y, ctx, priceTotal, quantityTotal });
         } else {
-            console.log("Over Flow");
+            
             billFooter({
                 current_y: current_new_page_y,
                 ctx: currentCanvasCtx,

@@ -154,7 +154,7 @@ const AppProvider = ({ children }) => {
                 request,
                 currentUser
             );
-            console.log(response)
+      
             const { user, token } = response.data;
             dispatch({ type: LOGIN_USER_SUCCESS, payload: { user, token } });
             addUserToLocalStorage({ user, token });
@@ -191,14 +191,14 @@ const AppProvider = ({ children }) => {
                 payload: { treeNames: treeNamesData, treeSizes: treeSizesData },
             });
         } catch (error) {
-            console.log(error.response);
+           
         }
     };
     const addRowInBillTable = (rowData) => {
         const billTableData = state.billTableData;
         billTableData.push(rowData);
         dispatch({ type: ADD_ROW_IN_BILL_TABLE, payload: { billTableData } });
-        console.log(state.user.role)
+      
         addTableDataToLocalStorage(state.billTableData)
         
     };
@@ -309,7 +309,7 @@ const AppProvider = ({ children }) => {
                 })
             );
 
-            console.log(tempTreeList);
+            
             const bill = {
                 customerName: customerName,
                 customerNumber: customerNumber,
@@ -325,7 +325,7 @@ const AppProvider = ({ children }) => {
                 treeList: { ...tempTreeList },
             };
             let response = await authFetch.post("/nursery", { ...bill });
-            console.log(response.data.bill)
+           
             dispatch({type: SET_LAST_BILL_VALUES, payload: {bill: response.data.bill}})
             dispatch({
                 type: UPDATE_BILL_NUMBER_SUCCESS,
@@ -333,18 +333,18 @@ const AppProvider = ({ children }) => {
             });
         } catch (err) {
             dispatch({ type: UPDATE_BILL_NUMBER_ERROR });
-            console.log(err);
+          
         }
     };
     const createStaff = async ({ firstname, lastname, username, password, active }) => {
         dispatch({ type: CREATE_STAFF_BEGIN })
         try {
-            let response = await authFetch.post("/staffAuth/register", { name: firstname, lastName: lastname, username, password, active })
+            await authFetch.post("/staffAuth/register", { name: firstname, lastName: lastname, username, password, active })
             dispatch({ type: CREATE_STAFF_SUCCESS })
-            console.log(response)
+          
         } catch (error) {
             dispatch({ type: CREATE_STAFF_ERROR })
-            console.log(error)
+           
         }
 
     }
@@ -359,7 +359,7 @@ const AppProvider = ({ children }) => {
             dispatch({ type: FETCH_STAFF_LIST_SUCCESS });
         } catch (error) {
             dispatch({ type: FETCH_STAFF_LIST_ERROR });
-            console.log(error)
+            
         }
     }
     
@@ -370,18 +370,18 @@ const AppProvider = ({ children }) => {
         dispatch({ type: UPDATE_SERVER_STAFF_LIST_BEGIN });
         try {
             dispatch({ type: UPDATE_SERVER_STAFF_LIST_SUCCESS });
-            const response = await authFetch.patch("/staffAuth/update", { staffList })
-            console.log(response)
+             await authFetch.patch("/staffAuth/update", { staffList })
+           
         } catch (error) {
             dispatch({ type: UPDATE_SERVER_STAFF_LIST_ERROR });
-            console.log(error)
+          
         }
     }
     const draftBill = async () => {
         dispatch({ type: DRAFT_BILL_BEGIN });
         try {
-            const response = await  authFetch.post("/staff/draftBill", { username:state.user.username, customerName:state.customerName, customerNumber:state.customerNumber, billItemsList: state.billTableData });
-            console.log(response)
+           await  authFetch.post("/staff/draftBill", { username:state.user.username, customerName:state.customerName, customerNumber:state.customerNumber, billItemsList: state.billTableData });
+
             dispatch({ type: DRAFT_BILL_SUCCESS, payload: { msg: "बिल गया" }});
             resetBillState();
             localStorage.removeItem("tableData");
@@ -398,16 +398,16 @@ const AppProvider = ({ children }) => {
             const response = await authFetch.get("/staff/draftBill");
             dispatch({type: FETCH_DRAFT_BILL, payload: { draftBillList:response.data.draftBillList}})
         } catch (error) {
-            console.log(error)
+      
         }
     }
     const deleteStaff = async  ({staffId}) => {
         try {
-            const response = await authFetch.post("/staffAuth/delete", { staffId: staffId });
-            console.log(response)
+            await authFetch.post("/staffAuth/delete", { staffId: staffId });
+
             dispatch({type: DELETE_STAFF})
         } catch (error) {
-            console.log(error)
+        
         }
     }
     const updateBillComponentsWithDraft = ({customerName,customerNumber, billItemsList}) => {
@@ -420,18 +420,18 @@ const AppProvider = ({ children }) => {
             dispatch({type: FETCH_RECENT_BILL_SUCCESS, payload: { recentBillList : response.data.recentBills}})
         }catch(error){
             dispatch({type: FETCH_RECENT_BILL_ERROR})
-            console.log(error)
+          
         }
     }
     const updateBill = async ({finalBill}) =>{
         dispatch({type: UPDATE_BILL_BEGIN})
         try{
-            const response = await authFetch.post("/nursery/updateBill", {...finalBill})
-            console.log(response)
+            await authFetch.post("/nursery/updateBill", {...finalBill})
+            
             dispatch({type: UPDATE_BILL_SUCCESS})
         }catch(error){
             dispatch({type: UPDATE_BILL_ERROR})
-            console.log(error)
+        
         }
     }
     const resetLastBillValue = () => {
@@ -448,12 +448,12 @@ const AppProvider = ({ children }) => {
         if(state.selectedDraftBillId === "") return;
         dispatch({type: DELETE_DRAFT_BEGIN})
         try{
-            const response = await authFetch.post("/staff/deleteDraftBill", {draftId: state.selectedDraftBillId})
-            console.log(response)
+            await authFetch.post("/staff/deleteDraftBill", {draftId: state.selectedDraftBillId})
+           
             dispatch({type: DELETE_DRAFT_SUCCESS})
         }catch(error){
             dispatch({type: DELETE_DRAFT_ERROR})
-            console.log(error)
+           
         }
     }
     const updateCustomerNumber = (number) => {
@@ -464,13 +464,13 @@ const AppProvider = ({ children }) => {
         dispatch({type: FETCH_BILL_TREE_LIST_BEGIN})
         try{
             const response = await authFetch.post("/nursery/singleBillTrees", {treeListId:id})
-            console.log(response)
+     
             res = response.data
             dispatch({type: FETCH_BILL_TREE_LIST_SUCCESS})
         }catch(error){
             res = null
             dispatch({type: FETCH_BILL_TREE_LIST_ERROR})
-            console.log(error)
+          
         }
         return res;
     }
@@ -479,13 +479,13 @@ const AppProvider = ({ children }) => {
         dispatch({type: REQUEST_BEGIN})
         try{
             const response = await authFetch.post("/nursery/getBillsByDate", {startDate:startDate, endDate:endDate})
-            console.log(response)
+           
             res = response.data
             dispatch({type: REQUEST_SUCCESS, payload: { msg: ""}})
         }catch(error){
             res = null
             dispatch({type: REQUEST_ERROR })
-            console.log(error)
+            
         }
         clearAlert();
         return res;
@@ -495,13 +495,13 @@ const AppProvider = ({ children }) => {
         dispatch({type: REQUEST_BEGIN})
         try{
             const response = await authFetch.get("/nursery/getBillsStartEndDate")
-            console.log(response)
+            
             res = response.data
             dispatch({type: REQUEST_SUCCESS, payload: { msg: ""}})
         }catch(error){
             res = null
             dispatch({type: REQUEST_ERROR, payload: { msg: ""}})
-            console.log(error)
+            
         }
         clearAlert();
         return res;
@@ -512,13 +512,13 @@ const AppProvider = ({ children }) => {
         dispatch({type: REQUEST_BEGIN})
         try{
             const response = await authFetch.post("/nursery/getBillsByBillNoOrName",{billNo: billNo, name:name})
-            console.log(response)
+           
             res = response.data
             dispatch({type: REQUEST_SUCCESS, payload: { msg: ""}})
         }catch(error){
             res = null
             dispatch({type: REQUEST_ERROR, payload: { msg: ""}})
-            console.log(error)
+            
         }
         clearAlert();
         return res;
@@ -528,13 +528,13 @@ const AppProvider = ({ children }) => {
         dispatch({type: REQUEST_BEGIN})
         try{
             const response = await authFetch.post("/nursery/getBillsStartEndMonthByYear",{year: year})
-            console.log(response)
+           
             res = response.data
             dispatch({type: REQUEST_SUCCESS, payload: { msg: ""}})
         }catch(error){
             res = null
             dispatch({type: REQUEST_ERROR, payload: { msg: ""}})
-            console.log(error)
+            
         }
         clearAlert();
         return res;
@@ -543,15 +543,15 @@ const AppProvider = ({ children }) => {
         let res;
         dispatch({type: REQUEST_BEGIN})
         try{
-            console.log(month, year)
+          
             const response = await authFetch.post("/nursery/getAmountsByMonth",{month:month, year: year})
-            console.log(response)
+            
             res = response.data
             dispatch({type: REQUEST_SUCCESS, payload: { msg: ""}})
         }catch(error){
             res = null
             dispatch({type: REQUEST_ERROR, payload: { msg: ""}})
-            console.log(error)
+            
         }
         clearAlert();
         return res;
@@ -561,13 +561,13 @@ const AppProvider = ({ children }) => {
         dispatch({type: REQUEST_BEGIN})
         try{
             const response = await authFetch.post("/nursery/insertTreeName",{hindiName:hindiName, englishName: englishName})
-            console.log(response)
+            
             res = response.data
             dispatch({type: REQUEST_SUCCESS, payload: { msg: "पेड़ जोड दिया", showAlert: true }})
         }catch(error){
             res = null
             dispatch({type: REQUEST_ERROR, payload: { msg: ""}})
-            console.log(error)
+            
         }
         clearAlert();
         return res;
@@ -577,13 +577,13 @@ const AppProvider = ({ children }) => {
         dispatch({type: REQUEST_BEGIN})
         try{
             const response = await authFetch.post("/nursery/insertTreeSize",{treeSize:treeSize})
-            console.log(response)
+            
             res = response.data
             dispatch({type: REQUEST_SUCCESS, payload: { msg: "पेड़ का आकार जोड दिया" , showAlert: true}})
         }catch(error){
             res = null
             dispatch({type: REQUEST_ERROR, payload: { msg: ""}})
-            console.log(error)
+            
         }
         clearAlert();
         return res;
@@ -593,13 +593,13 @@ const AppProvider = ({ children }) => {
         dispatch({type: REQUEST_BEGIN})
         try{
             const response = await authFetch.post("/nursery/removeTreeName",{hindiName:hindiName})
-            console.log(response)
+            
             res = response.data
             dispatch({type: REQUEST_SUCCESS, payload: { msg: "पेड़ हटा दिया", showAlert: true}})
         }catch(error){
             res = null
             dispatch({type: REQUEST_ERROR, payload: { msg: ""}})
-            console.log(error)
+            
         }
         clearAlert();
         return res;
@@ -609,13 +609,13 @@ const AppProvider = ({ children }) => {
         dispatch({type: REQUEST_BEGIN})
         try{
             const response = await authFetch.post("/nursery/removeTreeSize",{treeSize:treeSize})
-            console.log(response)
+            
             res = response.data
             dispatch({type: REQUEST_SUCCESS, payload: { msg: "पेड़ का आकार हटा दिया", showAlert: true}})
         }catch(error){
             res = null
             dispatch({type: REQUEST_ERROR, payload: { msg: ""}})
-            console.log(error)
+            
         }
         clearAlert();
         return res;

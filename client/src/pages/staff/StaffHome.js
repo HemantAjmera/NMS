@@ -6,7 +6,6 @@ import Alert from "../../components/Alert.js";
 const StaffHome = () => {
     const { fetchTreeNames, treeNames, showAlert } = useAppContext();
     useEffect(() => {
-        console.log("fetch")
         if (treeNames.length <= 0) {
             fetchTreeNames();
         }

@@ -18,7 +18,6 @@ const TreeManagerRemoveTree = ({setVisible, setActionName, setTreeName, restFiel
     const itemTemplate = (data) => {
         return <p className='p-0 m-0' onClick={(e) => onItemClick(e, data)}>{data.label} : {data.value}</p>
     }
-    console.log()
     return <div>
         <ListBox itemTemplate={itemTemplate}   options={treeNames} virtualScrollerOptions={{ itemSize: 38 }} style={{ width: '20rem' }} listStyle={{ height: '250px' }}/>
     </div>

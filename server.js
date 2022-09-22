@@ -2,6 +2,10 @@ import express from "express";
 import dotenv from "dotenv";
 dotenv.config();
 
+import { dirname } from 'path'
+import { fileURLToPath } from "url";
+import path from "path";
+
 //db
 import connectDB from "./db/connect.js";
 
@@ -17,7 +21,8 @@ import notFoundMiddleware from "./middleware/not-found.js";
 import authenticateUser from "./middleware/auth.js";
 import activeUserMiddleware from "./middleware/active-user.js";
 const app = express();
-
+const __dirname = dirname(fileURLToPath(import.meta.url))
+app.use(express.static(path.resolve(__dirname, './client/build')))
 app.use(express.json());
 
 app.get("/", (req, res) => {
@@ -33,6 +38,9 @@ app.use("/api/v1/nursery",[authenticateUser, activeUserMiddleware], nurseryRoute
 app.use("/api/v1/staffAuth", staffAuthRouter);
 app.use("/api/v1/staff",[authenticateUser, activeUserMiddleware], staffRouter);
 
+app.use("*",(req, res) => {
+    res.sendFile(path.resolve(__dirname, './client/build', 'index.html'))
+})
 
 app.use(notFoundMiddleware);
 app.use(errorHanlerMiddleware);

@@ -27,7 +27,6 @@ const RecentBill = () => {
         }).format(amount);
     };
     const footer = (bill) => {
-        //console.log(bill)
         return <div>
            <p style={{margin:0}}>कुल देय: {amountTemplate(bill.price + bill.loadingCharge)}</p>
            <p style={{margin:0}}>बकाया: {amountTemplate(bill.dueAmount)}</p>

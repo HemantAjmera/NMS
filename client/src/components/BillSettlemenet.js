@@ -105,17 +105,17 @@ const BillSettlement = ({ visible, setVisible, bill, redirectLocation }) => {
             totalPaid: totalPaid,
             dueAmount: totalDue,
         }
-        console.log(finalBill)
+        
         updateBill({ finalBill })
         fetchRecentBills();
         setVisible(false)
 
     }
     const onPrintHandler = async () => {
-        console.log(billData)
+        
         let data = await getAllBillTreeListById(billData.treeListId)
         if(data === null) return; 
-        console.log(redirectLocation)
+        
         navigate("/printbill", {state: {billData:bill, billTrees:data.billTrees, redirectLocation:redirectLocation }});
     }
     const onHide = () => {

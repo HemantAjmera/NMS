@@ -20,7 +20,7 @@ const DraftBillsList = () => {
         }
     }
     const onItemClick = (e) => {
-        console.log(e)
+       
         if (e.originalEvent.type !== "click") return;
         updateBillComponentsWithDraft({ customerName: e.target.value.customerName, customerNumber: e.target.value.customerNumber, billItemsList: e.target.value.billItemsList })
         updateDraftBillId(e.target.value._id)

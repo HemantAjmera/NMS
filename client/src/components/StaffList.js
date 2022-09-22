@@ -35,7 +35,6 @@ const StaffList = () => {
         );
     }
     const saveStaffListChanges = () => {
-        console.log(staffList)
         updateServerStaffList(staffList)
     }
     const passwordBody =(e)=> {
@@ -43,7 +42,7 @@ const StaffList = () => {
     }
     const [seletedStaff, setseletedStaff] = useState(null)
     const onDelectClickHandler = (o,e) => {
-        console.log(e)
+       
         setseletedStaff(e)
         setVisible(true)
     };
@@ -58,7 +57,6 @@ const StaffList = () => {
         );
     }
     const accept = () => {
-        console.log("Clicked " + seletedStaff)
         deleteStaff({staffId: seletedStaff._id})
         fetchStaffList();
     }

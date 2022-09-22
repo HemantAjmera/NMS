@@ -7,7 +7,6 @@ const BillManagerFilterDatePicker = ({setSelectedDate}) => {
     useEffect(() => {
         const fetchData = async () => {
             let data = await fetchBillsStartEndDate();
-            console.log(data)
             let startDate = new Date(data.startDate)
             startDate.setHours(0,0,0,0);
             let endDate = new Date(data.endDate)
@@ -19,7 +18,6 @@ const BillManagerFilterDatePicker = ({setSelectedDate}) => {
     },[])
     const onDateChangeHandler = (e) => {
         if(e === null) return;
-        console.log("dsdf"+e)
         setSelectedDate(e)
         //fetchBillsByDate(e)
     }

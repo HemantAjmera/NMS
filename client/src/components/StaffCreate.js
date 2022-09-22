@@ -46,7 +46,6 @@ const StaffCreate = () => {
         setPasswordError(false)
         createStaff({ firstname, lastname, username, password, active })
         fetchStaffList();
-        console.log("Staff Created")
     }
     return (<>
             <div  className="grid ">

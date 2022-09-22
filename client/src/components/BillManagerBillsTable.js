@@ -62,7 +62,6 @@ const BillManagerBillsTable = ({ selectedDate, billNo, name, isSearchBtnClicked,
 
         setSelectedBill(bill)
         setVisible(true);
-        //console.log(o, e)
     }
     return <>
         <DataTable value={records}

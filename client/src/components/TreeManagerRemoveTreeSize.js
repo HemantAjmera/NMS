@@ -11,7 +11,6 @@ const TreeManagerRemoveTreeSize = ({setTreeSize,setActionName,setVisible,restFie
         // eslint-disable-next-line
     }, [restFields])
     const onItemClick = (e,data) =>{
-        console.log()
         setTreeSize(e.value)
         setActionName("REMOVETREESIZE")
         setVisible(true)

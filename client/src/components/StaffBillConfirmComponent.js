@@ -6,7 +6,6 @@ const StaffBillConfirmComponent = () => {
         updateCustomerName, isLoading, draftBill, billTableData, customerNumber, updateCustomerNumber } = useAppContext();
     const onBillSubmit = () => {
         draftBill();
-        console.log("Send done!")
     }
     return <div>
         <div className="grid">
